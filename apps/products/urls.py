@@ -1,13 +1,10 @@
 from django.urls import path
-from apps.products.views import ProductAPIView
-# from django.conf import settings
-# from django.conf.urls.static import static
-#
-#
+from apps.products.views import ProductAPIView, ProductDetailAPIView, LikeAPIView
+
+
 urlpatterns = [
-    path('', ProductAPIView.as_view(), name='product-list')
+    path('', ProductAPIView.as_view(), name='product-list'),
+    path('product/<int:pk>', ProductDetailAPIView.as_view(), name='product-detail'),
+    path('likes', LikeAPIView.as_view(), name='likes')
 ]
 
-#
-# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

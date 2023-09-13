@@ -1,8 +1,5 @@
-
 from django.contrib import admin
-from apps.products.models import Product
+from apps.products.models import Product, Like
 
 admin.site.register(Product)
-
-
-# Register your models here.
+admin.site.register(Like)
