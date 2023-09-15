@@ -2,12 +2,15 @@ from rest_framework import serializers
 from apps.categories.models import Category
 from apps.products.models import Product, Like
 
+
 class ProductSerializer(serializers.ModelSerializer):
     owner = serializers.CharField(required=False)
 
     class Meta:
         model = Product
-        fields = ['id', 'title', 'description', 'image', 'quantity', 'price', 'country', 'created_at', 'category', 'owner']
+        fields = ['id', 'title', 'description', 'image', 'quantity', 'price', 'country', 'created_at', 'category',
+                  'owner']
+
 
 class ProductUpdateSerializer(serializers.Serializer):
     title = serializers.CharField(max_length=150, required=False)
@@ -30,4 +33,3 @@ class ProductUpdateSerializer(serializers.Serializer):
         instance.category = validated_data.get('category', instance.category)
         instance.save()
         return instance
-

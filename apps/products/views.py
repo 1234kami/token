@@ -57,10 +57,6 @@ class ProductDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-class LikeAPIView(generics.ListCreateAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    permission_classes = [permissions.IsAuthenticated, ]
     def get(self, request):
         user = request.user
         products = Product.objects.filter(product_like__user=user)
@@ -79,3 +75,9 @@ class LikeAPIView(generics.ListCreateAPIView):
         else:
             like = Like.objects.create(user=user, product=product)
             return Response({"message": "Created"}, status=status.HTTP_201_CREATED)
+
+
+class LikeAPIView(generics.ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticated, ]

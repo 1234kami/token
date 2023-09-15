@@ -2,6 +2,7 @@ from django.db import models
 from apps.categories.models import Category
 from apps.users.models import User
 
+
 class Product(models.Model):
     title = models.CharField(max_length=250)
     description = models.TextField()
@@ -11,7 +12,7 @@ class Product(models.Model):
     country = models.CharField(max_length=150)
     created_at = models.DateTimeField(auto_created=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='category_product')
-
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_product')
 
     def __str__(self):
         return self.title
@@ -23,5 +24,3 @@ class Like(models.Model):
 
     def __str__(self):
         return f"{self.user} - {self.product}"
-
-
